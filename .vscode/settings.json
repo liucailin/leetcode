@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.vs": "shaderlab",
+        "*.fs": "shaderlab",
+        "vector": "cpp"
+    }
+}
