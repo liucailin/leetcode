@@ -35,7 +35,7 @@ def mergeTwoLists(list1: Optional[ListNode], list2: Optional[ListNode]) -> Optio
 
 
         return dummy.next
-# 线性合并，时间复杂度是O(kn)
+# 线性合并，复杂度是 O(N * k)，其中 N 是所有链表节点数，k 是链表数量。
 def mergeKListsLinear(lists: List[Optional[ListNode]]) -> Optional[ListNode]:
         
         if not lists:
@@ -49,7 +49,7 @@ def mergeKListsLinear(lists: List[Optional[ListNode]]) -> Optional[ListNode]:
         return result
 
 class Solution:
-    # 分治合并，复杂度下降到对数级
+    # 分治合并，复杂度下是 O(N * log(k))，其中 N 是所有链表节点数，k 是链表数量。
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
         
         if not lists:
