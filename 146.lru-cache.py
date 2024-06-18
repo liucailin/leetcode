@@ -5,27 +5,27 @@
 #
 
 # @lc code=start
+from collections import OrderedDict
+
+
 class LRUCache:
 
     def __init__(self, capacity: int):
-        self.cache = dict()
+        self.cache = OrderedDict()
         self.capacity = capacity
 
     def get(self, key: int) -> int:
         if key in self.cache:
-            value = self.cache[key]
-            self.cache.pop(key)
-            self.cache[key] = value
-            return value
+            self.cache.move_to_end(key)
+            return self.cache[key]
         return -1
 
     def put(self, key: int, value: int) -> None:
         if key in self.cache:
-            self.cache.pop(key)
+            self.cache.move_to_end(key)
         self.cache[key] = value
         if len(self.cache) > self.capacity:
-            first_key = next(iter(self.cache))
-            self.cache.pop(first_key)
+            self.cache.popitem(False)
 
 
 # Your LRUCache object will be instantiated and called as such:
