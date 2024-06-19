@@ -19,13 +19,12 @@ class Solution:
         
         first = nums[0]
         second = float('inf')
-        k = 0
         for i in range(1, n):
             num = nums[i]
             if num > second:
                 return True
             if num > first:
-                second = first
+                second = num
             else:
                 first = num
 
@@ -34,7 +33,9 @@ class Solution:
         
 # @lc code=end
 
-from test import test
+# from test import test
 
 # test(Solution().increasingTriplet, [2,1,5,0,4,6])
-test(Solution().increasingTriplet, [20,100,10,12,5,13])
+# test(Solution().increasingTriplet, [0,4,2,1,0,-1,-3])
+# test(Solution().increasingTriplet, [2,1,5,0,4,6])
+# test(Solution().increasingTriplet, [2,1,5,0,7,6])
