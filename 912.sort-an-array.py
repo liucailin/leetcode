@@ -50,7 +50,7 @@ def selection_sort(nums):
                 min = j
         nums[i], nums[min] = nums[min], nums[i]
 
-# 标准分区算法 对于有序数组会超时 测试用例  [1,2,3,4,5,6,7,...,50000]
+# 标准分区算法 对于有序数组会超时 11/21 cases passed (N/A)  [1,2,3,4,5,6,7,...,50000]
 def partition(nums, lo, hi):
     
     # 旋转最后一个元素作为基准
@@ -66,7 +66,7 @@ def partition(nums, lo, hi):
     nums[i], nums[hi] = nums[hi], nums[i]
     return i
 
-# 随机化分区 对于相同元素会超时   50000个相同的2
+# 随机化分区 对于相同元素会超时   17/21 cases passed (N/A)   50000个相同的2 
 def random_partition(nums, lo, hi):
     rand = random.randint(lo, hi)
     nums[rand], nums[hi] = nums[hi], nums[rand]
@@ -107,10 +107,11 @@ def quick_sort(nums):
     def helper(nums, lo, hi):
 
         if lo < hi:
-            p = hoare_partition(nums, lo, hi)
-            helper(nums, lo, p)
+            p = random_partition(nums, lo, hi)
+            # helper(nums, lo, p)
+
             # 如果是其他分区算法
-            # helper(nums, lo, p - 1)
+            helper(nums, lo, p - 1)
             helper(nums, p + 1, hi)
 
     helper(nums, 0, len(nums) - 1)
