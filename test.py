@@ -4,6 +4,14 @@ def test(fn, *args):
     print("Output:", args, "return:", result)
     print()
 
+import time
+def benchmark(fn, *args):
+    start_time = time.time()
+    fn(*args)
+    end_time = time.time()
+    run_time = end_time - start_time 
+    print(f"time elapsed: {run_time:.4f} seconds")
+
 
 class ListNode:
     def __init__(self, val=0, next=None):
@@ -32,3 +40,17 @@ def LinkedList(array):
         current = current.next
 
     return head
+
+
+def asc_array(num):
+    array = []
+    for i in range(num):
+        array.append(i)
+    return array
+
+
+def sam_array(num, ele):
+    array = []
+    for i in range(num):
+        array.append(ele)
+    return array
