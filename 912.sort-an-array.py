@@ -118,9 +118,56 @@ def quick_sort(nums):
     return nums
 
 
+def merge(nums, lo, mid, hi):
+    i = lo
+    j = mid + 1
+
+    temp = []
+    while i <= mid and j <= hi:
+        if nums[i] < nums[j]:
+            temp.append(nums[i])
+            i += 1
+        else:
+            temp.append(nums[j])
+            j += 1
+
+    
+    while i <= mid:
+        temp.append(nums[i])
+        i += 1
+
+    while j <= hi:
+        temp.append(nums[j])
+        j += 1
+
+
+    for i in range(len(temp)):
+        nums[lo+i] = temp[i]
+
+
+# 归并排序
+def merge_sort(nums):
+
+    def helper(nums, lo, hi):
+        if lo < hi:
+            mid = (lo + hi) // 2
+
+            helper(nums, lo, mid)
+            helper(nums, mid + 1, hi)
+
+            merge(nums, lo, mid, hi)
+
+        
+
+    helper(nums, 0, len(nums) - 1)
+
+    return nums
+
+
+
 class Solution:
     def sortArray(self, nums: List[int]) -> List[int]:
-        quick_sort(nums)
+        merge_sort(nums)
         return nums
         
 # @lc code=end
@@ -130,8 +177,7 @@ class Solution:
 
 
 from test import test
-test(quick_sort, [5,2,3,1])
-test(quick_sort,  [5,1,1,2,0,0])
-test(quick_sort,  [-1,2,-8,-10])
-test(quick_sort,  [-2,3,-5]
-)
+test(merge_sort, [5,2,3,1])
+test(merge_sort,  [5,1,1,2,0,0])
+test(merge_sort,  [-1,2,-8,-10])
+test(merge_sort,  [-2,3,-5])
