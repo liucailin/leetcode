@@ -4,6 +4,15 @@ def test(fn, *args):
     print("Output:", args, "return:", result)
     print()
 
+
+def createTest(fn):
+    def test(*args):
+        print("Input:", args)
+        result = fn(*args)
+        print("Output:", args, "return:", result)
+        print()
+    return test
+
 import time
 def benchmark(fn, *args):
     start_time = time.time()
