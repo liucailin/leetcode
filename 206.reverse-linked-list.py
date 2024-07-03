@@ -54,8 +54,8 @@ class Solution:
         return reverseList_iter(head)
 
 
-from test import test, LinkedList
-test(Solution().reverseList, LinkedList([1,2,3,4,5]))
+from test import test, CreateLinkedList
+test(Solution().reverseList, CreateLinkedList([1,2,3,4,5]))
         
 # @lc code=end
 

@@ -38,7 +38,7 @@ class ListNode:
     def __repr__(self) -> str:
         return str(self)
 
-def LinkedList(array):
+def CreateLinkedList(array):
     if not array:
         return None
     
@@ -50,6 +50,64 @@ def LinkedList(array):
 
     return head
 
+from collections import deque
+
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+    def __str__(self) -> str:
+        
+        result = []
+
+        queue = deque()
+        queue.append(self)
+
+        while queue:
+            node = queue.popleft()
+            
+            if node:
+                result.append(str(node.val))
+                queue.append(node.left)
+                queue.append(node.right)
+            else:
+                result.append("null")
+
+
+        # 去掉多余的null
+        while result[-1] == "null":
+            result.pop()
+
+
+        return "[" + ",".join(result) + "]" 
+    
+    def __repr__(self) -> str:
+        return str(self)
+
+
+
+def CreateTreeNode(level_order):
+
+    if not level_order:
+        return None
+    root = TreeNode(level_order[0])
+    queue = [root]
+    i = 1
+    while i < len(level_order):
+        node = queue.pop(0)
+        if level_order[i] is not None:
+            node.left = TreeNode(level_order[i])
+            queue.append(node.left)
+        i += 1
+        if i < len(level_order) and level_order[i] is not None:
+            node.right = TreeNode(level_order[i])
+            queue.append(node.right)
+        i += 1
+    return root
+    
 
 def asc_array(num):
     array = []
