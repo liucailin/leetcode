@@ -35,10 +35,15 @@ class RecursiveCalculator:
             result = self.expr()
             self.get_next_token()  # Skip ')'
             return result
+        elif self.current_token in ('+', '-'):
+            sign = 1 if self.current_token == '+' else -1
+            self.get_next_token()
+            result = sign * self.factor()
+            return result
         else:
             start = 0
             while (self.current_token is not None and
-                   self.current_token.isdigit() or self.current_token == '.'):
+                   (self.current_token.isdigit() or self.current_token == '.')):
                 start += 1
                 if self.tokens:
                     self.get_next_token()
@@ -51,6 +56,6 @@ class RecursiveCalculator:
 
 # 使用示例
 calc = RecursiveCalculator()
-expression = "3 + 5 * (2 - 8)"
+expression = "-3 + 5 * (2 - 8)"
 result = calc.calculate(expression)
 print(f"Result of '{expression}' is {result}")

@@ -8,15 +8,29 @@ class Calculator:
     def parse_expression(self, expression):
         tokens = []
         value = ''
-        for char in expression:
+        i = 0
+        while i < len(expression):
+            char = expression[i]
             if char in '0123456789.':
                 value += char
             else:
                 if value:
                     tokens.append(float(value))
                     value = ''
-                if char in self.operators or char in "()":
-                    tokens.append(char)
+                if char in self.operators or char in '()':
+                    # 这里处理前缀 +- 
+                    if char in '+-' and (i == 0 or expression[i - 1] in '()+-*/'):
+                        sign = 1 if char == '+' else -1
+                        i += 1
+                        num = ''
+                        while i < len(expression) and (expression[i].isdigit() or expression[i] == '.'):
+                            num += expression[i]
+                            i += 1
+                        tokens.append(sign * float(num))
+                        i -= 1
+                    else:
+                        tokens.append(char)
+            i += 1
         if value:
             tokens.append(float(value))
         return tokens

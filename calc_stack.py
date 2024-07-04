@@ -1,3 +1,6 @@
+# https://www.imcao.cn/2022/02/24/calculate/
+
+
 class StackCalculator:
     def precedence(self, op):
         if op in ('+', '-'):
@@ -50,6 +53,8 @@ class StackCalculator:
                     values.append(self.apply_op(val1, val2, op))
                 ops.pop()
             else:
+                if expression[i] in ('+', '-') and (i == 0 or expression[i - 1] in '()+-*/'):
+                    values.append(0)
                 while (ops and self.precedence(ops[-1]) >= self.precedence(expression[i])):
                     val2 = values.pop()
                     val1 = values.pop()
@@ -68,6 +73,6 @@ class StackCalculator:
 
 # 使用示例
 calc = StackCalculator()
-expression = "3 + 5 * (2 - 8)"
+expression = "-3 + 5 * (-2 - 8)"
 result = calc.calculate(expression)
 print(f"Result of '{expression}' is {result}")
