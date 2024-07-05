@@ -13,6 +13,14 @@ def createTest(fn):
         print()
     return test
 
+
+def createAssert(fn):
+    def test(expect, *args):
+        result = fn(*args)
+        if expect != result:
+            print(f'{fn.__name__}{args} expect {expect} but result {result}')
+    return test
+
 import time
 def benchmark(fn, *args):
     start_time = time.time()
