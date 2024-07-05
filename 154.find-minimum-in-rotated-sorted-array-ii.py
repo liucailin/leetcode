@@ -1,7 +1,7 @@
 #
-# @lc app=leetcode id=153 lang=python3
+# @lc app=leetcode id=154 lang=python3
 #
-# [153] Find Minimum in Rotated Sorted Array
+# [154] Find Minimum in Rotated Sorted Array II
 #
 
 # @lc code=start
@@ -17,13 +17,18 @@ class Solution:
 
             if nums[mid] > nums[right]:
                 left = mid + 1
-            else:
+            elif nums[mid] < nums[right]:
                 right = mid
+            else:
+                right -= 1
 
         return nums[left]
 
-
+        
 # @lc code=end
 
 
-Solution().findMin([3, 4, 5, 6, 2])
+print(Solution().findMin([1,3,3]))
+print(Solution().findMin([3,3,1,3]))
+print(Solution().findMin([1,3,5]))
+print(Solution().findMin([2,2,2,0,1]))
