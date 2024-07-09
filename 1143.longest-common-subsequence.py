@@ -5,7 +5,7 @@
 #
 def longestCommonSubsequence(self, text1: str, text2: str) -> int:
     """
-    TLE
+    TLE O(2^m+n)
     f(i,j) = f(i-1, j-1) + 1 A[i] == B[j]
     f(i,j) = max(f(i-1, j), f(i, j-1)) A[i] != B[j]
     """
@@ -21,6 +21,9 @@ def longestCommonSubsequence(self, text1: str, text2: str) -> int:
 # @lc code=start
 class Solution:
     def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+        """
+        O(m*n)
+        """
         m = len(text1)
         n = len(text2)
         dp = [[0 for _ in range(n+1)] for _ in range(m+1)]
